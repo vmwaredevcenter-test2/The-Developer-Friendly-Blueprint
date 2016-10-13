@@ -1,1 +1,0 @@
-# The-Developer-Friendly-Blueprint

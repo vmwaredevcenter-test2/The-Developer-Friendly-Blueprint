@@ -1,0 +1,12 @@
+name: "auto-generated-pkg-6c9cc874-5750-4932-a618-7cb98fff19f7"
+productVersion: "7.0.0-SNAPSHOT"
+data:
+- locator: "composite-blueprint/CentOS63.yaml"
+  name: "CentOS6.3"
+  description: "CentOS6.3"
+  dependencies:
+  - "software-component/Software.GetandRun.yaml"
+- locator: "software-component/Software.GetandRun.yaml"
+  name: "GetandRun"
+  description: "wget a file and run it"
+exportTime: "2015-11-19T16:42:49.377Z"

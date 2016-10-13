@@ -1,0 +1,97 @@
+id: CentOS63
+name: CentOS6.3
+description: ''
+status: PUBLISHED
+properties:
+  _archiveDays: 1
+components:
+  CentOS_63:
+    type: Infrastructure.CatalogItem.Machine.Virtual.vSphere
+    data:
+      _cluster:
+        fixed: 1
+        min: 1
+      action:
+        fixed: LinkedClone
+      allow_storage_policies:
+        fixed: false
+      blueprint_type:
+        fixed: '1'
+      cpu:
+        fixed: 1
+        min: 1
+      disks:
+      - capacity: 3
+        custom_properties: null
+        id: 1447779162854
+        initial_location: ''
+        is_clone: true
+        label: Hard disk 1
+        storage_reservation_policy: ''
+        userCreated: false
+        volumeId: 0
+      display_location:
+        fixed: false
+      guest_customization_specification: CentOS
+      machine_prefix:
+        fixed:
+          id: Use group default
+      max_network_adapters: {}
+      max_volumes: {}
+      memory:
+        fixed: 512
+        min: 512
+      nics:
+      - address: ''
+        assignment_type: Static
+        id: 0
+        load_balancing: ''
+        network: ${_resource~DefaultExternalNetwork}
+        network_profile: Default External Network
+      provisioning_workflow:
+        fixed:
+          id: CloneWorkflow
+          label: CloneWorkflow
+      security_groups: []
+      security_tags: []
+      source_machine:
+        fixed:
+          id: b661516a-0a5f-4712-bc37-267533d74578
+          label: linux-base-01a
+      source_machine_external_snapshot:
+        fixed: 3
+      source_machine_name:
+        fixed: linux-base-01a
+      source_machine_vmsnapshot:
+        fixed:
+          id: '4'
+      storage:
+        fixed: 3
+        min: 3
+  DefaultExternalNetwork:
+    type: Infrastructure.Network.Network.Existing
+    data:
+      name:
+        fixed: DefaultExternalNetwork
+      network_profile:
+        fixed: Default External Network
+  GetandRun_1:
+    type: Software.GetandRun
+    data:
+      Directory:
+        default: ''
+        required: true
+        visible: true
+      host: ${_resource~CentOS_63}
+      myscript:
+        default: ''
+        required: true
+        visible: true
+      wgetURL:
+        default: ''
+        required: true
+        visible: true
+layout:
+  CentOS_63: 0,0
+  DefaultExternalNetwork: 1,0
+  GetandRun_1: 0,0

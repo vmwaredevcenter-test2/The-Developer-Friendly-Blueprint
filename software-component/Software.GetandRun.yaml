@@ -1,0 +1,129 @@
+'@type': "SoftwareComponentType"
+createdDate: "2015-11-17T22:19:30.599Z"
+lastUpdated: "2015-11-18T01:13:25.504Z"
+id: "Software.GetandRun"
+name: "GetandRun"
+description: "wget a file and run it"
+publishStatus: "PUBLISHED"
+publishStatusName: "Published"
+schema:
+  fields:
+  - id: "myscript"
+    label: "myscript"
+    description: ""
+    dataType:
+      type: "primitive"
+      typeId: "STRING"
+    state:
+      dependencies: []
+      facets:
+      - type: "defaultValue"
+        value:
+          type: "constant"
+          value:
+            type: "string"
+            value: ""
+      - type: "mandatory"
+        value:
+          type: "constant"
+          value:
+            type: "boolean"
+            value: true
+    isMultiValued: false
+  - id: "host"
+    label: "Container"
+    description: ""
+    dataType:
+      type: "ref"
+      componentTypeId: "com.vmware.csp.iaas.blueprint.service"
+      classId: "Infrastructure.Machine.Schema"
+      label: "Machine"
+    state:
+      dependencies: []
+      facets:
+      - type: "visible"
+        value:
+          type: "constantClause"
+          value:
+            type: "boolean"
+            value: false
+      - type: "mandatory"
+        value:
+          type: "constant"
+          value:
+            type: "boolean"
+            value: true
+    isMultiValued: false
+  - id: "wgetURL"
+    label: "wgetURL"
+    description: "the wget url"
+    dataType:
+      type: "primitive"
+      typeId: "STRING"
+    state:
+      dependencies: []
+      facets:
+      - type: "defaultValue"
+        value:
+          type: "constant"
+          value:
+            type: "string"
+            value: ""
+      - type: "mandatory"
+        value:
+          type: "constant"
+          value:
+            type: "boolean"
+            value: true
+    isMultiValued: false
+  - id: "Directory"
+    label: "Directory"
+    description: "What Directory"
+    dataType:
+      type: "primitive"
+      typeId: "STRING"
+    state:
+      dependencies: []
+      facets:
+      - type: "defaultValue"
+        value:
+          type: "constant"
+          value:
+            type: "string"
+            value: ""
+      - type: "mandatory"
+        value:
+          type: "constant"
+          value:
+            type: "boolean"
+            value: true
+    isMultiValued: false
+containerFieldId: "host"
+lifecycleTasks:
+- createdDate: "2015-11-17T22:19:30.600Z"
+  lastUpdated: "2015-11-18T01:37:30.580Z"
+  script:
+    scriptContent: "#!/bin/bash \n/tmp/$myscript"
+    isRebootAfter: false
+    scriptTypeId: "Bash"
+  taskDescriptorRef:
+    id: "START"
+    label: "Start"
+- createdDate: "2015-11-17T22:19:30.600Z"
+  lastUpdated: "2015-11-18T01:37:30.581Z"
+  script:
+    scriptContent: "#!/bin/bash \nwget $wgetURL/$myscript -P $Directory"
+    isRebootAfter: false
+    scriptTypeId: "Bash"
+  taskDescriptorRef:
+    id: "INSTALL"
+    label: "Install"
+- createdDate: "2015-11-18T01:37:30.385Z"
+  lastUpdated: "2015-11-18T01:37:30.385Z"
+  script:
+    scriptContent: "#!/bin/bash \nchmod +x $Directory/$myscript"
+    isRebootAfter: false
+    scriptTypeId: "Bash"
+  taskDescriptorRef:
+    id: "CONFIGURE"
+    label: "Configure"
